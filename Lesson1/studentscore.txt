@@ -1,0 +1,94 @@
+def main():
+    scores = [85, 72, 91, 64, 78]
+    
+    print("Student Scores:")
+    for score in scores:
+        print(score)
+    
+    print("\n" + "="*40)
+    
+    for i, score in enumerate(scores, 1):
+        grade_status = get_grade_status(score)
+        passed_failed = "Passed" if score >= 75 else "Failed"
+        print(f"Student {i}: {score} - {grade_status} - {passed_failed}")
+    
+    print("\n" + "="*40)
+    
+    total_score = calculate_total(scores)
+    average_score = calculate_average(scores)
+    highest_score = find_highest(scores)
+    lowest_score = find_lowest(scores)
+    passed_count = count_passed(scores)
+    failed_count = count_failed(scores)
+    
+    print(f"Total Score: {total_score}")
+    print(f"Average Score: {average_score}")
+    print(f"Highest Score: {highest_score}")
+    print(f"Lowest Score: {lowest_score}")
+    print(f"Passed: {passed_count}")
+    print(f"Failed: {failed_count}")
+
+def get_grade_status(score):
+    """Determine the grade interpretation based on score"""
+    if 90 <= score <= 100:
+        return "Excellent"
+    elif 80 <= score <= 89:
+        return "Very Good"
+    elif 75 <= score <= 79:
+        return "Good"
+    else:
+        return "Failed"
+
+def calculate_total(scores):
+    """Calculate the sum of all scores"""
+    total = 0
+    for score in scores:
+        total += score
+    return total
+
+def calculate_average(scores):
+    """Calculate the average of all scores"""
+    if len(scores) == 0:
+        return 0
+    total = calculate_total(scores)
+    return total // len(scores)  
+
+def find_highest(scores):
+    """Find the highest score in the list"""
+    if len(scores) == 0:
+        return None
+    highest = scores[0]
+    for score in scores:
+        if score > highest:
+            highest = score
+    return highest
+
+def find_lowest(scores):
+    """Find the lowest score in the list"""
+    if len(scores) == 0:
+        return None
+    lowest = scores[0]
+    for score in scores:
+        if score < lowest:
+            lowest = score
+    return lowest
+
+def count_passed(scores):
+    """Count how many students passed (score >= 75)"""
+    passed = 0
+    for score in scores:
+        if score >= 75:
+            passed += 1
+    return passed
+
+def count_failed(scores):
+    """Count how many students failed (score < 75)"""
+    failed = 0
+    for score in scores:
+        if score < 75:
+            failed += 1
+    return failed
+
+# Run the program
+if __name__ == "__main__":
+    main()
